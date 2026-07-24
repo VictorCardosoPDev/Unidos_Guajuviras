@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unidos do Guajuviras</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* RESET & ESTILOS GERAIS */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: #333;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    h1, h2, h3 {
+      font-weight: 700;
+    }
+
+    .cursive-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      color: #d4a373;
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+    }
+
+    /* CORES INSTITUCIONAIS */
+    :root {
+      --green-dark: #1e3a1e;
+      --green-mid: #2d5a27;
+      --gold-accent: #d4a373;
+      --bg-light: #f4f6f4;
+    }
+
+    /* SEÇÃO SOBRE / HISTÓRIA */
+    .about-section {
+      background-color: var(--green-dark);
+      color: #ffffff;
+      padding: 60px 0;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about-img img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      object-fit: cover;
+    }
+
+    .about-text p {
+      margin-bottom: 18px;
+      font-size: 0.95rem;
+      text-align: justify;
+    }
+
+    /* SEÇÃO EQUIPE */
+    .team-section {
+      padding: 60px 0;
+      background-color: #ffffff;
+      text-align: center;
+    }
+
+    .team-section h2 {
+      font-size: 2.2rem;
+      color: #111;
+      margin-bottom: 10px;
+    }
+
+    .team-subtitle {
+      color: #666;
+      margin-bottom: 40px;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+    }
+
+    .team-card {
+      background-color: var(--bg-light);
+      border-radius: 8px;
+      overflow: hidden;
+      text-align: left;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .team-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .team-card-content {
+      padding: 20px;
+      flex-grow: 1;
+    }
+
+    .team-role {
+      font-size: 0.85rem;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 5px;
+    }
+
+    .team-name {
+      font-size: 1.2rem;
+      color: var(--green-dark);
+      margin-bottom: 12px;
+    }
+
+    .team-desc {
+      font-size: 0.88rem;
+      color: #444;
+    }
+
+    /* SEÇÃO BLOG / PROJETOS */
+    .blog-section {
+      padding: 60px 0;
+      background-color: var(--bg-light);
+    }
+
+    .blog-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      color: var(--green-dark);
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .blog-card {
+      background: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .blog-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .blog-card-body {
+      padding: 20px;
+    }
+
+    .blog-card-title {
+      font-size: 1.1rem;
+      color: #111;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .blog-card-text {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* CARROSSEL / BANNER DE TRANSPARÊNCIA */
+    .carousel-section {
+      background-color: var(--green-mid);
+      color: #ffffff;
+      padding: 50px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .carousel-container {
+      max-width: 800px;
+      margin: 0 auto;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .carousel-slide {
+      display: none;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .carousel-slide.active {
+      display: block;
+    }
+
+    .carousel-hint {
+      margin-top: 15px;
+      font-size: 0.85rem;
+      font-style: italic;
+      opacity: 0.8;
+    }
+
+    .carousel-controls {
+      margin-top: 20px;
+    }
+
+    .carousel-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      margin: 0 5px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+
+    .carousel-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* RODAPÉ / CONTATO */
+    footer {
+      background-color: #ffffff;
+      padding: 50px 0 20px 0;
+      border-top: 1px solid #eee;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h3 {
+      font-size: 1.8rem;
+      color: var(--green-dark);
+      margin-bottom: 15px;
+    }
+
+    .footer-col p {
+      color: #555;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+
+    .copyright {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #888;
+      border-top: 1px solid #eee;
+      padding-top: 20px;
+    }
+    /* ---------------- CABAÇALHO (HEADER) ---------------- */
+    header {
+      width: 100%;
+      background-color: #ffffff;
+      padding: 25px 50px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #333;
+      line-height: 1.3;
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #555;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: #000;
+    }
+
+    /* ---------------- SEÇÃO PRINCIPAL (HERO SECTION) ---------------- */
+    .hero-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 50px 80px 50px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    /* Lado Esquerdo - Texto */
+    .hero-text-container {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .hero-title-main {
+      font-size: 3.8rem;
+      font-weight: 700;
+      line-height: 1.1;
+      color: #111;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: #444;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .hero-description {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.6;
+      margin-top: 20px;
+    }
+
+    .btn-saiba-mais {
+      display: inline-block;
+      align-self: flex-start;
+      background-color: #1e3a1e; /* Verde escuro */
+      color: #ffffff;
+      padding: 14px 32px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: background-color 0.3s;
+      margin-top: 10px;
+    }
+
+    .btn-saiba-mais:hover {
+      background-color: #2d5a27;
+    }
+
+    /* Lado Direito - Brasão (Placeholder) */
+    .hero-coat-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .coat-placeholder {
+      width: 100%;
+      max-width: 450px;
+      height: 480px;
+      border: 2px dashed #1e3a1e;
+      border-radius: 12px;
+      background-color: #f7f9f7;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      color: #1e3a1e;
+    }
+
+    /* Quando você tiver a imagem do brasão, basta remover a classe .coat-placeholder 
+       e usar uma <img> diretamente dentro da container com essa estilização: */
+    .coat-img {
+      width: 100%;
+      max-width: 450px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    /* ---------------- SEÇÃO SOBRE (BRANCA) ---------------- */
+    .about-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 50px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    /* Lado Esquerdo - Imagem com Overlay */
+    .about-image-wrapper {
+      position: relative;
+      width: 100%;
+      height: 600px; /* Altura fixa para manter a proporção da foto */
+      border-radius: 4px;
+      overflow: hidden;
+      background-color: #e0e0e0;
+    }
+
+    /* A imagem real entra aqui */
+    .about-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* Overlay escurecido opcional para o texto aparecer melhor */
+    .overlay-gradient {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+    }
+
+    /* Textos por cima da imagem */
+    .image-text-overlay {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      z-index: 2;
+    }
+
+    .nossa-historia-title {
+      font-family: 'Dancing Script', cursive;
+      color: #e4c25a; /* Amarelo/Dourado */
+      font-size: 4.5rem;
+      line-height: 0.9;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    }
+
+    .btn-leia-mais {
+      background-color: #f1ebd9;
+      color: #333;
+      border: none;
+      padding: 12px 24px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      transition: background-color 0.2s;
+    }
+
+    .btn-leia-mais:hover {
+      background-color: #e2dac2;
+    }
+
+    .fotografia-tag {
+      color: #ffffff;
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* Lado Direito - Textos da Fundação */
+    .about-text-content {
+      padding-right: 20px;
+    }
+
+    .about-text-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 2.2rem;
+      color: #555;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .about-text-content p {
+      font-size: 1.05rem;
+      color: #666;
+      text-align: justify;
+      line-height: 1.8;
+    }
+
+    /* ---------------- SEÇÃO HISTÓRIA (VERDE) ---------------- */
+    .history-green-section {
+      background-color: #3f6834; /* Verde da identidade visual */
+      color: #ffffff;
+      padding: 60px 50px;
+      margin-top: -10px; /* Para grudar na imagem caso queira */
+    }
+
+    .history-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+    }
+
+    .history-grid p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      text-align: justify;
+    }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 900px) {
+      .about-section {
+        grid-template-columns: 1fr;
+        padding: 30px 20px;
+      }
+      
+      .about-image-wrapper {
+        height: 450px;
+      }
+
+      .nossa-historia-title {
+        font-size: 3.5rem;
+      }
+
+      .history-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .history-green-section {
+        padding: 40px 20px;
+      }
+    }
+
+    /* RESPONSIVIDADE (Celulares e Tablets) */
+    @media (max-width: 900px) {
+      header {
+        padding: 20px;
+      }
+
+      .hero-section {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 40px;
+      }
+
+      .hero-title-main {
+        font-size: 2.8rem;
+      }
+
+      .coat-placeholder {
+        height: 350px;
+      }
+    }
+    /* RESPONSIVIDADE */
+    @media (max-width: 768px) {
+      .about-grid, .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+    <!-- CABEÇALHO -->
+  <header>
+    <div class="header-container">
+      <a href="#" class="brand-logo">
+        Ponto de Cultural Unidos<br>Do Guajuviras
+      </a>
+      <nav>
+        <a href="#sobre">Sobre</a>
+        <a href="#menu">Menu</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- SEÇÃO PRINCIPAL COM O BRASÃO -->
+  <section class="hero-section">
+    
+    <!-- Coluna da Esquerda (Texto e Botão) -->
+    <div class="hero-text-container">
+      <h1 class="hero-title-main">Unidos do<br>Guajuviras</h1>
+      
+      <p class="hero-subtitle">
+        Feito por pessoas para pessoas,<br>
+        venha participar conosco.
+      </p>
+
+      <p class="hero-description">
+        Seja parte da nossa comunidade dedicada à promoção de projetos culturais e pontos artísticos. Descubra um espaço de prestígio e confiança para se conviver.
+      </p>
+
+      <a href="#sobre" class="btn-saiba-mais">Saiba Mais</a>
+    </div>
+
+    <!-- Coluna da Direita (Placeholder do Brasão) -->
+    <div class="hero-coat-container">
+      <!-- PLACEHOLDER DO BRASÃO -->
+      <div class="coat-placeholder">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px;">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+        <strong>[ IMAGEM DO BRASÃO AQUI ]</strong>
+        <span style="font-size: 0.85rem; opacity: 0.7; margin-top: 6px;">Substitua este bloco por uma tag &lt;img&gt; no futuro.</span>
+      </div>
+
+      <!-- Quando tiver a imagem, substitua a div acima por: 
+      <img src="caminho-da-sua-imagem.png" alt="Brasão ARBC Unidos do Guajuviras" class="coat-img">
+      -->
+    </div>
+
+  </section>
+<!-- SEÇÃO SOBRE (Fundo Branco) -->
+  <section class="about-section" id="sobre">
+    
+    <!-- Imagem da Esquerda com Textos Sobrepostos -->
+    <div class="about-image-wrapper">
+      <!-- Substitua o link abaixo pela imagem real da escola de samba -->
+      <img src="https://via.placeholder.com/600x800?text=Imagem+da+Bandeira" alt="Integrantes com a bandeira Unidos do Guajuviras">
+      
+      <div class="overlay-gradient"></div>
+      
+      <div class="image-text-overlay">
+        <h2 class="nossa-historia-title">Nossa<br>história</h2>
+        <button class="btn-leia-mais">Leia mais +</button>
+        <span class="fotografia-tag">Fotografia</span>
+      </div>
+    </div>
+
+    <!-- Texto da Direita -->
+    <div class="about-text-content">
+      <h2>Sobre ARBC Unidos do Guajuviras</h2>
+      <p>
+        Desde a sua fundação, em 8 de janeiro de 1991, a Associação Beneficente Cultural Unidos do Guajuviras obteve ascensão, tanto na participação do Carnaval de Canoas quanto no da Região Metropolitana. Campeã do Grupo de Acesso de Porto Alegre em 2012, destacou-se na folia da Capital pela primeira vez ao vencer, em 1993, o campeonato do então Grupo Extra com o enredo "A História de Canoas".
+      </p>
+    </div>
+  </section>
+
+  <!-- SEÇÃO HISTÓRIA DETALHADA (Fundo Verde) -->
+  <section class="history-green-section">
+    <div class="history-grid">
+      <!-- Coluna Verde 1 -->
+      <div>
+        <p>
+          Desde sua fundação em 8 de janeiro de 1991 a Associação Recreativa Beneficente e Cultural Unidos do Guajuviras obteve ascensão, tanto no carnaval de canoas quanto o no carnaval oficial de Porto Alegre, a escola e se destacou ao vencer pela primeira vez o extinto grupo extra e em 1992 tendo como enredo a história de e Canoas, em 1995 mais um título no carnaval da capital contando a história da Noite Mitos, Mistérios e Magias. Vitória que concedeu passagem para o grupo 1A atual grupo prata na época, no qual permaneceu por longo tempo realizando belíssimos carnavais.
+        </p>
+      </div>
+
+      <!-- Coluna Verde 2 -->
+      <div>
+        <p>
+          Já no carnaval de 2012 voltou a vencer no carnaval da capital Porto Alegre obtendo a História do Jogo no grupo de Acesso. E em Carnaval em 2014 com o enredo retratando novamente a Seu Município venceu a disputa na cidade de Canoas. Atualmente a Associação é Ponto de Cultura Nacional reconhecida e certificada pela Secretaria de Cidadania e Diversidade Cultural do Ministério da Cultura. E em janeiro de próximo ano a agremiação completa 35 anos de história realizando desfiles oficiais na cidade de Canoas e Porto Alegre capital dos gaúchos. Desfilando atualmente com cerca de 700 componentes no Grupo Bronze.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="about-section">
+    <div class="container about-grid">
+      <div class="about-img">
+        <img src="https://via.placeholder.com/600x400?text=Unidos+do+Guajuviras" alt="Integrantes da Unidos do Guajuviras">
+      </div>
+      <div class="about-text">
+        <h2 class="cursive-title">Sobre ARBC Unidos do Guajuviras</h2>
+        <p>Desde a sua fundação, em 8 de janeiro de 1991, a Associação Beneficiente Cultural Unidos do Guajuviras obteve ascensão, tanto na participação do Carnaval de Canoas quanto no da Região Metropolitana. Campeã do Grupo de Acesso de Porto Alegre em 2012, destacou-se na folia da Capital pela primeira vez ao vencer o Grupo Extra com o enredo "A História de Canoas".</p>
+        <p>Já no carnaval de 2012 voltou a vencer no carnaval da capital Porto Alegre obtendo o História do Jogo no Grupo de Acesso. Em "Carnaval em 2014 com o enredo retratando novamente a Seu Município venceu a disputa na cidade de Canoas. Atualmente a Associação é Ponto de Cultura Nacional reconhecida e certificada pela Secretaria de Cidadania e Diversidade Cultural do Ministério da Cultura. E em janeiro de próximo ano a agremiação completa 35 anos de história realizando desfiles oficiais na cidade de Canoas e Porto Alegre capital dos gaúchos. Desfilando atualmente com cerca de 700 componentes no Grupo Bronze.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="team-section">
+    <div class="container">
+      <h2>Conheça um pouco da equipe</h2>
+      <p class="team-subtitle">Conheça mais das pessoas que fazem a diferença.</p>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <img src="https://via.placeholder.com/300x300?text=Marcio+Rogerio" alt="Marcio Rogério">
+          <div class="team-card-content">
+            <div class="team-role">Presidente do ponto de cultura</div>
+            <h3 class="team-name">Marcio Rogério</h3>
+            <p class="team-desc">Atual presidente da associação, responsável pela organização e execução do ponto de cultura.</p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <img src="https://via.placeholder.com/300x300?text=Renata+David" alt="Renata David">
+          <div class="team-card-content">
+            <div class="team-role">Relações institucionais</div>
+            <h3 class="team-name">Renata David</h3>
+            <p class="team-desc">Técnica em Nutrição Educadora Social, Coordenadora de Igualdade Racial Cachoeirinha, Presidente Compr Canoas, Presidente Instituto Nacional e Internacional Afro Origem RS.</p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <img src="https://via.placeholder.com/300x300?text=Alex+Gonzaga" alt="Alex Gonzaga">
+          <div class="team-card-content">
+            <div class="team-role">Professor e produtor de projetos</div>
+            <h3 class="team-name">Alex Gonzaga</h3>
+            <p class="team-desc">A Orquestra é dirigida pelo Professor Alex Gonzaga, responsável pela direção dos projetos literários e de dança moderna.</p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <img src="https://via.placeholder.com/300x300?text=Taylor+Da+Rosa" alt="Taylor Da Rosa">
+          <div class="team-card-content">
+            <div class="team-role">Produtor de projetos e designer</div>
+            <h3 class="team-name">Taylor Da Rosa</h3>
+            <p class="team-desc">Escritor e violoncelista do Pnaipe através dos projetos do ponto de cultura. Se juntando à equipe da Unidos do Guajuviras.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blog-section">
+    <div class="container">
+      <h2>Blog</h2>
+      <div class="blog-grid">
+        <div class="blog-card">
+          <img src="https://via.placeholder.com/400x250?text=Camerata+de+Cordas" alt="Camerata de cordas">
+          <div class="blog-card-body">
+            <h3 class="blog-card-title">Camerata de cordas</h3>
+            <p class="blog-card-text">O objetivo deste, entre outros projetos que realizamos, é melhorar a condição de vida das crianças e adolescentes em situação de...</p>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <img src="https://via.placeholder.com/400x250?text=Programa+RBS+TV" alt="Programa Um Baita Sábado">
+          <div class="blog-card-body">
+            <h3 class="blog-card-title">PROGRAMA "UM BAITA SÁBADO" RBS TV</h3>
+            <p class="blog-card-text">Imagem da velha guarda musical no programa baita sábado Poder participar do programa @baitasabadodarbstv junto a nossa V.G.M ...</p>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <img src="https://via.placeholder.com/400x250?text=Projeto+Agora+dos+Meninos" alt="Projeto Agora dos Meninos">
+          <div class="blog-card-body">
+            <h3 class="blog-card-title">PROJETO AGORA DOS MENINOS</h3>
+            <p class="blog-card-text">Lança oficina literária 2025: É Meu Direito do escritor Carlos Ribeiro Neste 23 de abril, Dia Mundial do Livro, o Projeto Agora dos Menin...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="carousel-section">
+    <div class="container carousel-container">
+      <div class="carousel-slide active">
+        <p>A ASSOCIAÇÃO BENEFICENTE E CULTURAL UNIDOS DA GUAJUVIRAS, CNPJ 94.309.200/0001-74, informa a tramitação da Proposta Transferegov nº 011198/2026, Processo SEI nº 01400.008009/2026-66, referente ao projeto <strong>"Guajuviras Cultura Popular em Movimento"</strong>.</p>
+      </div>
+      <div class="carousel-slide">
+        <p>Formação, Memória e Difusão das Culturas Tradicionais e Populares. O projeto com valor global de R$ 200.000,00, oriundo de emenda parlamentar nº 43320005, parlamentar Daiana Santos, com vigência prevista de 01/07/2026 a 30/07/2027, GND 3 - Custeio, Ação 20ZF - Promoção e Fomento à Cultura Brasileira.</p>
+      </div>
+
+      <p class="carousel-hint">Veja mais arrastando para o lado!</p>
+
+      <div class="carousel-controls">
+        <button class="carousel-btn" onclick="moveSlide(-1)">&#10094; Anterior</button>
+        <button class="carousel-btn" onclick="moveSlide(1)">Próximo &#10095;</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h3>Unidos Do Guajuviras</h3>
+        <p>escolaunidosdoguajuviras@gmail.com</p>
+        <p>+55 51 99616-5131</p>
+        <p>+55 51 99223-8639</p>
+      </div>
+      <div class="footer-col">
+        <p><strong>CNPJ:</strong> 94.309.200/0001-74</p>
+        <br>
+        <p>Ponto de Cultura Ugua</p>
+        <p>av. 17 de Abril N 811 - Guajuviras, Canoas.</p>
+        <p>CEP: 92415-00</p>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2026 by Unidos do Guajuviras.
+    </div>
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (i === index) {
+          slide.classList.add('active');
+        }
+      });
+    }
+
+    function moveSlide(direction) {
+      currentSlide += direction;
+      if (currentSlide >= slides.length) {
+        currentSlide = 0;
+      }
+      if (currentSlide < 0) {
+        currentSlide = slides.length - 1;
+      }
+      showSlide(currentSlide);
+    }
+  </script>
+
+</body>
+</html>
