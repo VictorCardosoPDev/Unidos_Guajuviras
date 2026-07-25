@@ -102,7 +102,7 @@
     }
 
     .team-card {
-      background-color: var(--bg-light);
+      background-color: #ffd000dc;
       border-radius: 8px;
       overflow: hidden;
       text-align: left;
@@ -190,12 +190,24 @@
 
     /* CARROSSEL / BANNER DE TRANSPARÊNCIA */
     .carousel-section {
-      background-color: var(--green-mid);
-      color: #ffffff;
-      padding: 50px 20px;
-      text-align: center;
-      position: relative;
-    }
+  background-color: var(--green-mid, #2d5a27);
+  color: #ffffff;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.carousel-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative; /* Base para as setas flutuantes */
+  padding: 0 60px; /* Adiciona espaço nas laterais para o texto não encostar nas setas */
+  display: flex;
+  align-items: center;
+  min-height: 180px;
+}
+.carousel-content {
+  width: 100%;
+}
 
     .carousel-container {
       max-width: 800px;
@@ -208,81 +220,141 @@
     }
 
     .carousel-slide {
-      display: none;
-      font-size: 1.05rem;
-      line-height: 1.7;
-      animation: fadeIn 0.5s ease-in-out;
-    }
+  display: none;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  animation: fadeIn 0.5s ease-in-out;
+}
 
     .carousel-slide.active {
-      display: block;
-    }
+  display: block;
+}
 
     .carousel-hint {
-      margin-top: 15px;
-      font-size: 0.85rem;
-      font-style: italic;
-      opacity: 0.8;
-    }
+  margin-top: 25px;
+  font-size: 0.85rem;
+  font-style: italic;
+  opacity: 0.8;
+}
 
     .carousel-controls {
       margin-top: 20px;
     }
 
-    .carousel-btn {
-      background: rgba(255, 255, 255, 0.2);
-      border: none;
-      color: white;
-      padding: 8px 16px;
-      margin: 0 5px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.3s;
-    }
+    /* Setas Laterais */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%); /* Centraliza perfeitamente na vertical */
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%; /* Deixa os botões redondos */
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+  z-index: 10;
+}
 
     .carousel-btn:hover {
-      background: rgba(255, 255, 255, 0.4);
-    }
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.arrow-left {
+  left: 0;
+}
+
+.arrow-right {
+  right: 0;
+}
 
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
+/* ---------------- RODAPÉ (FOOTER) ---------------- */
+.site-footer {
+  background-color: #ffffff;
+  padding-top: 60px;
+  border-top: 1px solid #eaeaea; /* Linha sutil para separar do restante do site */
+  color: #666;
+  font-family: 'Montserrat', sans-serif;
+}
 
-    /* RODAPÉ / CONTATO */
-    footer {
-      background-color: #ffffff;
-      padding: 50px 0 20px 0;
-      border-top: 1px solid #eee;
-    }
+.footer-colunas {
+  display: flex;
+  justify-content: space-around; /* Centraliza e distribui o espaço como na imagem */
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 50px;
+  max-width: 1000px; 
+  margin-left: auto;
+  margin-right: auto;
+}
 
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 40px;
-    }
+.footer-col {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Espaçamento uniforme entre as linhas */
+}
 
-    .footer-col h3 {
-      font-size: 1.8rem;
-      color: var(--green-dark);
-      margin-bottom: 15px;
-    }
+.footer-title {
+  color: #1e3a1e; /* Verde institucional */
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
 
-    .footer-col p {
-      color: #555;
-      font-size: 0.95rem;
-      margin-bottom: 8px;
-    }
+.footer-col p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
 
-    .copyright {
-      text-align: center;
-      font-size: 0.8rem;
-      color: #888;
-      border-top: 1px solid #eee;
-      padding-top: 20px;
-    }
+.footer-col a {
+  color: #666;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-col a:hover {
+  color: #2d5a27; /* Muda para verde ao passar o mouse */
+  text-decoration: underline;
+}
+
+.footer-destaque {
+  color: #444;
+  margin-bottom: 8px !important;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 25px 20px;
+  border-top: 1px solid #eaeaea;
+  font-size: 0.85rem;
+  color: #999;
+  background-color: #fafafa; /* Fundo levemente cinza para destacar a base */
+}
+
+/* Responsividade para Celulares */
+@media (max-width: 768px) {
+  .footer-colunas {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+  
+  .footer-title {
+    font-size: 1.3rem;
+  }
+}
     /* ---------------- CABAÇALHO (HEADER) ---------------- */
     header {
   width: 100%;
@@ -611,9 +683,127 @@
         grid-template-columns: 1fr;
       }
     }
+
+    .sidebar {
+  position: fixed;
+  top: 0;
+  right: -300px; /* Esconde o menu fora da tela */
+  width: 300px;
+  height: 100vh;
+  background-color: #1e3a1e; /* Verde escuro */
+  z-index: 1000; /* Fica por cima de tudo */
+  transition: right 0.4s ease;
+  padding: 50px 30px;
+  box-shadow: -4px 0 15px rgba(0,0,0,0.2);
+}
+
+/* Classe que será adicionada via JS para mostrar o menu */
+.sidebar.ativo {
+  right: 0;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.sidebar-nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.sidebar-nav a:hover {
+  color: #d4a373; /* Dourado */
+}
+
+/* Botão de Fechar (X) */
+.fechar-btn {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.fechar-btn:hover {
+  color: #d4a373;
+}
+
+/* Fundo escuro (Overlay) */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999; /* Fica logo abaixo da sidebar */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s;
+}
+
+.menu-overlay.ativo {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Botão Voltar ao Topo */
+#btnTopo {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #1e3a1e; /* Verde escuro institucional */
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
+  z-index: 998;
+}
+
+/* Classe ativada via JavaScript para mostrar o botão */
+#btnTopo.visivel {
+  opacity: 1;
+  visibility: visible;
+}
+
+#btnTopo:hover {
+  background-color: #2d5a27;
+}
   </style>
 </head>
 <body>
+  <div class="menu-overlay" id="menuOverlay" onclick="fecharMenu()"></div>
+
+    <!-- Barra Lateral (Sidebar) -->
+    <div class="sidebar" id="sidebarMenu">
+      <button class="fechar-btn" onclick="fecharMenu()">&times;</button>
+      <nav class="sidebar-nav">
+        <a href="#" onclick="fecharMenu()">Início</a>
+        <a href="#equipe" onclick="fecharMenu()">Nossa Equipe</a>
+        <a href="#projetos" onclick="fecharMenu()">Projetos e Blog</a>
+        <a href="#contato" onclick="fecharMenu()">Contato</a>
+      </nav>
+    </div>
     <!-- CABEÇALHO -->
   <header>
     <div class="header-container">
@@ -625,7 +815,7 @@
       </div>
       <nav>
         <a href="#sobre">Sobre</a>
-        <a href="#menu">Menu</a>
+        <a href="#" onclick="abrirMenu(event)">Menu</a>
       </nav>
     </div>
   </header>
@@ -722,7 +912,7 @@
     </div>
   </section>
 
-  <section class="team-section">
+  <section class="team-section" id="equipe">
     <div class="container">
       <h2>Conheça um pouco da equipe</h2>
       <p class="team-subtitle">Conheça mais das pessoas que fazem a diferença.</p>
@@ -798,8 +988,15 @@
     </div>
   </section>
 
-  <section class="carousel-section">
-    <div class="container carousel-container">
+  <!-- TRANSPARÊNCIA / SLIDER DE INFORMAÇÕES -->
+<section class="carousel-section">
+  <div class="container carousel-wrapper">
+    
+    <!-- Botão Esquerdo (Seta) -->
+    <button class="carousel-btn arrow-left" onclick="moveSlide(-1)">&#10094;</button>
+
+    <!-- Área de Texto Central -->
+    <div class="carousel-content">
       <div class="carousel-slide active">
         <p>A ASSOCIAÇÃO BENEFICENTE E CULTURAL UNIDOS DA GUAJUVIRAS, CNPJ 94.309.200/0001-74, informa a tramitação da Proposta Transferegov nº 011198/2026, Processo SEI nº 01400.008009/2026-66, referente ao projeto <strong>"Guajuviras Cultura Popular em Movimento"</strong>.</p>
       </div>
@@ -808,34 +1005,43 @@
       </div>
 
       <p class="carousel-hint">Veja mais arrastando para o lado!</p>
-
-      <div class="carousel-controls">
-        <button class="carousel-btn" onclick="moveSlide(-1)">&#10094; Anterior</button>
-        <button class="carousel-btn" onclick="moveSlide(1)">Próximo &#10095;</button>
-      </div>
     </div>
-  </section>
 
-  <footer>
-    <div class="container footer-grid">
+    <!-- Botão Direito (Seta) -->
+    <button class="carousel-btn arrow-right" onclick="moveSlide(1)">&#10095;</button>
+
+  </div>
+</section>
+
+  <!-- RODAPÉ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-colunas">
+      
+      <!-- Coluna 1 -->
       <div class="footer-col">
-        <h3>Unidos Do Guajuviras</h3>
-        <p>escolaunidosdoguajuviras@gmail.com</p>
-        <p>+55 51 99616-5131</p>
-        <p>+55 51 99223-8639</p>
+        <h3 class="footer-title">Unidos Do Guajuviras</h3>
+        <p><a href="mailto:escolaunidosdoguajuviras@gmail.com">escolaunidosdoguajuviras@gmail.com</a></p>
+        <p><a href="tel:+5551996165131">+55 51 99616-5131</a></p>
+        <p><a href="tel:+5551992238639">+55 51 99223-8639</a></p>
       </div>
+      
+      <!-- Coluna 2 -->
       <div class="footer-col">
-        <p><strong>CNPJ:</strong> 94.309.200/0001-74</p>
-        <br>
+        <p class="footer-destaque"><strong>CNPJ:</strong> 94.309.200/0001-74</p>
         <p>Ponto de Cultura Ugua</p>
         <p>av. 17 de Abril N 811 - Guajuviras, Canoas.</p>
         <p>CEP: 92415-00</p>
       </div>
+
     </div>
-    <div class="copyright">
-      &copy; 2026 by Unidos do Guajuviras.
-    </div>
-  </footer>
+  </div>
+  
+  <!-- Barra de Copyright -->
+  <div class="footer-bottom">
+    <p>&copy; 2026 by Unidos do Guajuviras.</p>
+  </div>
+</footer>
 
   <script>
     let currentSlide = 0;
@@ -860,7 +1066,36 @@
       }
       showSlide(currentSlide);
     }
-  </script>
 
+    function abrirMenu(event) {
+      event.preventDefault(); // Evita que a página role para o topo ao clicar no link
+      document.getElementById('sidebarMenu').classList.add('ativo');
+      document.getElementById('menuOverlay').classList.add('ativo');
+    }
+
+    function fecharMenu() {
+      document.getElementById('sidebarMenu').classList.remove('ativo');
+      document.getElementById('menuOverlay').classList.remove('ativo');
+    }
+    // Monitora o scroll da página para mostrar/esconder o botão
+window.addEventListener('scroll', function() {
+  const btnTopo = document.getElementById('btnTopo');
+  if (window.scrollY > 300) { // Aparece depois de rolar 300 pixels
+    btnTopo.classList.add('visivel');
+  } else {
+    btnTopo.classList.remove('visivel');
+  }
+});
+
+// Função para subir suavemente até o topo
+function voltarAoTopo() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+  </script>
+<!-- Botão Voltar ao Topo -->
+<button id="btnTopo" onclick="voltarAoTopo()" title="Voltar ao topo">&#8679;</button>
 </body>
 </html>
